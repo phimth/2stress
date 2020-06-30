@@ -1,55 +1,96 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import MenuScreen from './Screens/Menu/index'
-import BottomBarScreen from './Screens/BottomBar/index'
 import BreathingScreen from './Screens/Breathing/index'
+import AdviceScreen from './Screens/Advices/index'
+import ProfilScreen from './Screens/Profil/index'
 import AnxietyScreen from './Screens/Anxiety/index'
+import { FontAwesome  } from '@expo/vector-icons';
+import HomeScreen from './Screens/Home/index'
 
-function HomeScreen({navigation}) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Accueil</Text>
-      <Button
-        title="Go to Menu"
-        onPress={() => navigation.navigate('Menu')}>
-      </Button>
-      <Button
-        title="Go to Bottom"
-        onPress={() => navigation.navigate('Bottom')}>
-      </Button>
-      <Button
-        title="Go to Breath"
-        onPress={() => navigation.navigate('Breathing')}>
-      </Button>
-      <Button
-        title="Go to Anxiety"
-        onPress={() => navigation.navigate('Anxiety')}>
-      </Button>
-    </View>
-  );
+
+const HomeStack = createStackNavigator();
+const AdviceStack = createStackNavigator();
+const AnxietyStack = createStackNavigator();
+const BreathingStack = createStackNavigator();
+const ProfilStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function HomeStackScreen({navigation}){
+  return(
+    <HomeStack.Navigator>
+        <HomeStack.Screen name="Home" component={HomeScreen} options={{
+          headerLeft:()=>(
+            <FontAwesome.Button  size={25} name="bars" onPress={()=>{navigation.openDrawer()}}></FontAwesome.Button>
+          )
+        }}/>
+    </HomeStack.Navigator>
+    )
 }
 
-
-
-
-const Stack = createStackNavigator();
+function AdviceStackScreen({navigation}){
+  return(
+    <AdviceStack.Navigator>
+        <AdviceStack.Screen name="Advices" component={AdviceScreen}  options={{
+          headerLeft:()=>(
+            <FontAwesome.Button  size={25} name="bars" onPress={()=>{navigation.openDrawer()}}></FontAwesome.Button>
+          )
+        }}/>
+    </AdviceStack.Navigator>
+    )
+}
+function AnxietyStackScreen({navigation}){
+  return(
+    <AnxietyStack.Navigator>
+        <AnxietyStack.Screen name="Anxiety" component={AnxietyScreen}  options={{
+          headerLeft:()=>(
+            <FontAwesome.Button  size={25} name="bars" onPress={()=>{navigation.openDrawer()}}></FontAwesome.Button>
+          )
+        }}/>
+    </AnxietyStack.Navigator>
+    )
+}
+function BreathingStackScreen({navigation}){
+  return(
+    <BreathingStack.Navigator>
+        <BreathingStack.Screen name="Breathing" component={BreathingScreen}  options={{
+          headerLeft:()=>(
+            <FontAwesome.Button  size={25} name="bars" onPress={()=>{navigation.openDrawer()}}></FontAwesome.Button>
+          )
+        }}/>
+    </BreathingStack.Navigator>
+    )
+}
+function ProfilStackScreen({navigation}){
+  return(
+    <ProfilStack.Navigator>
+        <ProfilStack.Screen name="Profil" component={ProfilScreen} options={{
+          headerLeft:()=>(
+            <FontAwesome.Button  size={25} name="bars" onPress={()=>{navigation.openDrawer()}}></FontAwesome.Button>
+          )
+        }}/>
+    </ProfilStack.Navigator>
+    )
+}
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Menu" component={MenuScreen} />
-        <Stack.Screen name="Bottom" component={BottomBarScreen} />
-        <Stack.Screen name="Breathing" component={BreathingScreen} />
-        <Stack.Screen name="Anxiety" component={AnxietyScreen} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeStackScreen} />
+        <Drawer.Screen name="Advices" component={AdviceStackScreen} />
+        <Drawer.Screen name="Anxiety" component={AnxietyStackScreen} />
+        <Drawer.Screen name="Breathing" component={BreathingStackScreen} />
+        <Drawer.Screen name="Profil" component={ProfilStackScreen} /> 
+      </Drawer.Navigator>
+
     </NavigationContainer>
   );
 }
 
 export default App;
+/*        */

@@ -3,12 +3,12 @@ import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-function BottomBarScreen({route,navigation}){
+function ProfilScreen({route,navigation}){
     return(
       <View>
-        <Text>BottomBarScreen</Text>
+        <Text>ProfilScreen</Text>
       </View>
     );
 }
 
-export default BottomBarScreen;
+export default ProfilScreen;
